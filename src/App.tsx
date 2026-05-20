@@ -36,9 +36,9 @@ export default function App() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="w-full max-w-2xl flex flex-col items-center z-10"
       >
-        <header className="mb-8 w-full">
+        <header className="mb-8 w-full text-center">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#4285f4] via-[#9b72cb] to-[#d96570] pb-2 leading-tight">
-            Nevigation Page For ChenYY🌀
+            Navigation Page For ChenYY🌀
           </h1>
         </header>
 
