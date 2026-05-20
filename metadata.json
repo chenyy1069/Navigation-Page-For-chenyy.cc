@@ -1,0 +1,6 @@
+{
+  "name": "Navigation Page For ChenYY",
+  "description": "A clean, modern personal navigation page featuring project links and tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
