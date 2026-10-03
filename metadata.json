@@ -1,6 +1,6 @@
 {
-  "name": "Navigation Page For ChenYY",
-  "description": "A clean, modern personal navigation page featuring project links and tools.",
+  "name": "ChenYY — A little out of orbit.",
+  "description": "一小片自由生长的互联网。ChenYY 的个人入口、代码实验与小工具，以纸色、朱红和轨道艺术串联。",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

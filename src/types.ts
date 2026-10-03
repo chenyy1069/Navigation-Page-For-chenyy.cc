@@ -1,12 +1,9 @@
-import { ElementType } from 'react';
-
 export interface SiteLink {
   id: string;
   name: string;
+  label: string;
+  category: string;
   url: string;
+  domain: string;
   description: string;
-  icon?: ElementType;
-  colorClass?: string;
-  bgHoverClass?: string;
-  borderHoverClass?: string;
 }

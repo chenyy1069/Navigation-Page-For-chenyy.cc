@@ -1,55 +1,76 @@
-import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
+import { ArrowDown, ArrowUpRight, Moon, Sun } from 'lucide-react';
 import { NavigationCards } from './components/NavigationCards';
-import { useState, useEffect } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { OrbitArtwork, Star } from './components/Artwork';
 
 export default function App() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => document.documentElement.dataset.theme === 'dark');
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+    try {
+      localStorage.setItem('chenyy-theme', isDark ? 'dark' : 'light');
+    } catch {
+      // Theme switching still works when browser storage is unavailable.
     }
   }, [isDark]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0c0e14] flex flex-col items-center justify-center p-6 sm:p-12 overflow-hidden font-sans relative transition-colors duration-500 selection:bg-purple-900/30">
-      {/* Background Mesh Orbs */}
-      <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/20 rounded-full blur-[120px] pointer-events-none -z-10 transition-colors duration-500" />
-      <div className="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-[120px] pointer-events-none -z-10 transition-colors duration-500" />
-      <div className="fixed top-[20%] right-[10%] w-[300px] h-[300px] bg-pink-400/10 dark:bg-pink-600/10 rounded-full blur-[100px] pointer-events-none -z-10 transition-colors duration-500" />
+    <div className="page-shell">
+      <a className="skip-link" href="#destinations">跳到导航 / Skip to links</a>
+      <header className="site-header">
+        <a className="wordmark" href="#" aria-label="ChenYY 首页">
+          <Star className="brand-mark" />
+          <span>chenyy<span className="wordmark-dot">.</span>cc</span>
+        </a>
+        <span className="header-note">A PERSONAL INTERNET, IN FIVE LINKS.</span>
+        <div className="header-actions">
+          <a className="index-link" href="#destinations">The index <span>05</span></a>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={() => setIsDark((current) => !current)}
+            aria-label={isDark ? '切换到浅色模式' : '切换到深色模式'}
+            aria-pressed={isDark}
+          >
+            {isDark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+          </button>
+        </div>
+      </header>
 
-      {/* Theme Toggle */}
-      <button 
-        onClick={() => setIsDark(!isDark)}
-        className="absolute top-6 right-6 p-3 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-md text-gray-700 dark:text-gray-300 hover:bg-black/10 dark:hover:bg-white/10 transition-all z-20"
-        aria-label="Toggle dark mode"
-      >
-        {isDark ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
+      <main>
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow"><span className="status-dot" /> THE INTERNET IS A BIG PLACE. THIS IS MY LITTLE ONE.</p>
+            <h1 id="hero-title">A little<br />out of <em>orbit.</em></h1>
+            <div className="hero-bottom">
+              <p className="hero-description">一些想法，一些小工具。<br />还有一个，不太愿意待在轨道里的我。</p>
+              <a className="explore-link" href="#destinations" aria-label="探索五个导航入口">
+                <ArrowDown size={19} aria-hidden="true" />
+                <span>随好奇心，去下一站</span>
+              </a>
+            </div>
+          </div>
+          <div className="hero-art">
+            <OrbitArtwork />
+            <div className="art-caption"><span>FIG. 01 — A SMALL UNIVERSE</span><span>NO FIXED ORBIT ↗</span></div>
+          </div>
+        </section>
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-2xl flex flex-col items-center z-10"
-      >
-        <header className="mb-8 w-full text-center">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#4285f4] via-[#9b72cb] to-[#d96570] pb-2 leading-tight">
-            Navigation Page For ChenYY🌀
-          </h1>
-        </header>
-
-        <main className="w-full">
+        <section className="destinations" id="destinations" aria-labelledby="destinations-title">
+          <div className="section-heading">
+            <h2 id="destinations-title"><span className="section-tick" /> 随意逛逛 <span className="section-english">/ THE INDEX</span></h2>
+            <p>FIVE DOORS. A FEW POSSIBILITIES.</p>
+          </div>
           <NavigationCards />
-        </main>
+        </section>
+      </main>
 
-        <footer className="mt-12 text-slate-500 text-sm tracking-widest text-center pb-4 font-medium">
-          By ChenYY🌀
-        </footer>
-      </motion.div>
+      <footer className="site-footer">
+        <p><Star className="footer-star" /> Made of curiosity<span className="accent-dot">.</span></p>
+        <span className="footer-note">一小片互联网，自由生长。</span>
+        <a href="https://github.com/chenyy1069/Navigation-Page-For-chenyy.cc">BY CHENYY <ArrowUpRight size={14} aria-hidden="true" /></a>
+      </footer>
     </div>
   );
 }

@@ -1,9 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Navigation Page For ChenYY🌀</title>
+    <meta name="theme-color" content="#f4f1e9" />
+    <meta name="description" content="ChenYY 的一小片互联网：一些想法、一些小工具，以及一个不太愿意待在轨道里的我。" />
+    <title>ChenYY — A little out of orbit.</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('chenyy-theme') === 'dark' ? 'dark' : 'light';
+      } catch {
+        document.documentElement.dataset.theme = 'light';
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
