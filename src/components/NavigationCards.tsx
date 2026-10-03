@@ -62,7 +62,7 @@ export function NavigationCards() {
           <CardArtwork kind={site.id} />
           <div className="card-copy">
             <span className="card-label">{site.label}</span>
-            <h3>{site.name}</h3>
+            <h2>{site.name}</h2>
             <p>{site.description}</p>
           </div>
           <span className="card-domain">{site.domain}</span>
